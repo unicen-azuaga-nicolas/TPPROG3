@@ -9,6 +9,7 @@ public class Maquina {
         this.piezas = piezas;
     }
     
+    
 
 	@Override
     public String toString() {
