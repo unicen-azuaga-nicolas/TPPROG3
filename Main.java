@@ -10,7 +10,7 @@ public class Main {
 	        Configuracion config = LectorArchivo.leerArchivo(ruta);
 
 	        ExisteSecuencia buscador = new ExisteSecuencia(config.getPiezasTotales(), config.getMaquinas());
-	        boolean existeSolucion = buscador.existeSecuancia();
+	        boolean existeSolucion = buscador.existeSecuencia();
 
 	        if (existeSolucion) {
 	            System.out.println("Solución encontrada: ");
