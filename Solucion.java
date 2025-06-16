@@ -14,7 +14,7 @@ public class Solucion {
     private int piezasProducidas;
     private int puestasEnFuncionamiento;
     private int costo; // Estados generados o candidatos considerados
-    private MetodoResolucion metodo; // "Backtracking" o "Greedy"
+    protected MetodoResolucion metodo; // "Backtracking" o "Greedy"
 
     public Solucion(MetodoResolucion metodo) {
         this.secuenciaMaquinas = new ArrayList<>();
@@ -24,17 +24,44 @@ public class Solucion {
         this.metodo = metodo;
     }
 
+    public Solucion(Solucion otra) {
+        this.secuenciaMaquinas = new ArrayList<>(otra.secuenciaMaquinas);
+        this.piezasProducidas = otra.piezasProducidas;
+        this.puestasEnFuncionamiento = otra.puestasEnFuncionamiento;
+        this.costo = otra.costo;
+        this.metodo = otra.metodo;
+    }
+
     public void agregarMaquina(Maquina maquina) {
         this.secuenciaMaquinas.add(maquina);
         this.puestasEnFuncionamiento++;
         this.piezasProducidas += maquina.getPiezas();
     }
 
+    public void quitarUltima() {
+        if (!secuenciaMaquinas.isEmpty()) {
+            Maquina ultima = secuenciaMaquinas.remove(secuenciaMaquinas.size() - 1);
+            piezasProducidas -= ultima.getPiezas();
+            puestasEnFuncionamiento--;
+        }
+    }
+
+
     public void incrementarCosto() {
         this.costo++;
     }
 
+    public void setCosto(int costo){
+        this.costo = costo;
+    }
 
+    public int getCosto(){
+        return this.costo;
+    }
+
+    public int getPuestasEnFuncionamiento(){
+        return this.puestasEnFuncionamiento;
+    }
     @Override
     public String toString() {
         return metodo + " - Solución:\n" +
