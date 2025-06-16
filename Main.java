@@ -14,10 +14,24 @@ public class Main {
 	        boolean existeSolucion = buscador.existeSecuencia();
 
 	        if (existeSolucion) {
-	            System.out.println("Solución encontrada: ");
+	            System.out.println("Secuencia de maquinas: ");
 	            for (Maquina m : buscador.getMejorSolucion()) {
 	                System.out.print(m.nombre + " ");
 	            }
+	            System.out.println("\n");
+	           
+	            int suma =0;
+	            for (Maquina m : buscador.getMejorSolucion()) {
+	            	 suma += m.piezas;
+	                
+	            }
+	            System.out.println("Cantidad de piezas producidas: "+ suma);
+	            
+	            int puestasEnFuncionamiento = buscador.getMejorSolucion().size();
+	            
+	            System.out.println("Puestas en funcionamiento: " + puestasEnFuncionamiento);
+	            
+	            System.out.println("Estados generados: " + buscador.getEstadosGenerados());
 	        } else {
 	            System.out.println("No hay solución posible.");
 	        }
