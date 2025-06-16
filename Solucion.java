@@ -34,16 +34,6 @@ public class Solucion {
         this.costo++;
     }
 
-    // Getters
-    public List<Maquina> getSecuenciaMaquinas() { return secuenciaMaquinas; }
-    public int getPiezasProducidas() { return piezasProducidas; }
-    public int getPuestasEnFuncionamiento() { return puestasEnFuncionamiento; }
-    public int getCosto() { return costo; }
-    public MetodoResolucion getMetodo() { return metodo; }
-
-    public void setMetodo(MetodoResolucion metodo){
-        this.metodo = metodo;
-    }
 
     @Override
     public String toString() {
