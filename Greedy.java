@@ -3,17 +3,22 @@ package prog3.Trabajo.Especial;
 import java.util.Collections;
 import java.util.List;
 
-public class Greedy {
+public class Greedy implements Algoritmo  {
 
 
-    public static Solucion execute(int piezasTotales, List<Maquina> maquinas) {
+    public Greedy(){
+
+    }
+
+    @Override
+    public  Solucion ejecutar(Problema p) {
         Solucion solucion = new Solucion(Solucion.MetodoResolucion.GREEDY);
-        Collections.sort(maquinas); // Ordeno de mayor a menor
+        Collections.sort(p.getMaquinas()); // Ordeno de mayor a menor
 
-        int piezasRestantes = piezasTotales;
+        int piezasRestantes = p.getPiezasTotales();
 
         while (piezasRestantes > 0) {
-            Maquina candidato = buscarCandidato(maquinas, piezasRestantes, solucion);
+            Maquina candidato = buscarCandidato(p.getMaquinas(), piezasRestantes, solucion);
 
             //No hay solución
             if (candidato == null) {

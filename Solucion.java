@@ -41,6 +41,6 @@ public class Solucion {
                 "Secuencia: " + secuenciaMaquinas + "\n" +
                 "Piezas producidas: " + piezasProducidas + "\n" +
                 "Puestas en funcionamiento: " + puestasEnFuncionamiento + "\n" +
-                "Costo (" + (metodo.equals("Backtracking") ? "estados generados" : "candidatos considerados") + "): " + costo;
+                "Costo (" + (metodo == Solucion.MetodoResolucion.BACKTRACKING ? "estados generados" : "candidatos considerados") + "): " + costo + "\n";
     }
 }

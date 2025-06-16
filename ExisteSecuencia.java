@@ -56,7 +56,7 @@ public class ExisteSecuencia {
 		boolean encontrado = false;
 		for (Maquina m : maquinas) {
 		    actual.add(m); // Usamos la máquina
-		    if (existeSecuenciaRec(piezasRestantes - m.piezas, actual)) {
+		    if (existeSecuenciaRec(piezasRestantes - m.getPiezas(), actual)) {
 		        encontrado = true;
 		        
 		    } // Restamos sus piezas y seguimos

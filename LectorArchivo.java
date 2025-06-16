@@ -7,11 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LectorArchivo {
-	public static Configuracion leerArchivo(String ruta) throws IOException {
-        List<Maquina> maquinas = new ArrayList<>();
-        int piezasTotales;
+    private String ruta;
+    private int piezasTotales;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+    private List<Maquina> maquinas;
+
+    public LectorArchivo(String ruta) {
+        this.ruta = ruta;
+        this.maquinas = new ArrayList<>();
+        this.piezasTotales = 0;
+    }
+
+    public int getPiezasTotales() {
+        return piezasTotales;
+    }
+
+    public List<Maquina> getMaquinas() {
+        return maquinas;
+    }
+
+    public void leerArchivo() throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(this.ruta))) {
             // Leer la primera línea (piezasTotales)
             piezasTotales = Integer.parseInt(br.readLine().trim());
 
@@ -24,7 +40,5 @@ public class LectorArchivo {
                 maquinas.add(new Maquina(nombre, piezas));
             }
         }
-
-        return new Configuracion(piezasTotales, maquinas);
     }
 }
