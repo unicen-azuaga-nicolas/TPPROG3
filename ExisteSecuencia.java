@@ -30,7 +30,7 @@ public class ExisteSecuencia {
 	    return estadosGenerados;
 	}
 	
-	public boolean existeSecuancia() {
+	public boolean existeSecuencia() {
 		 List<Maquina> actual = new ArrayList<>();
 		 return existeSecuenciaRec(cantPiezasProduccion, actual);
 	}
