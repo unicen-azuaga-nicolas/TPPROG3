@@ -1,6 +1,7 @@
 package prog3.Trabajo.Especial;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class Main {
@@ -24,5 +25,17 @@ public class Main {
 	    } catch (IOException e) {
 	        System.out.println("Error leyendo el archivo: " + e.getMessage());
 	    }
+	}
+
+
+	public Solucion greedy(int piezasTotales, List<Maquina> maquinaList ){
+
+	   Solucion mejorSolucion = null;
+	   boolean terminoDeEvaluar = piezasTotales == 0;
+	   while (!terminoDeEvaluar){
+		   Maquina mejor = null;
+	   }
+
+	   return mejorSolucion;
 	}
 }
