@@ -1,6 +1,6 @@
 package prog3.Trabajo.Especial;
 
-public class Maquina {
+public class Maquina implements Comparable<Maquina> {
 	String nombre;
     int piezas;
 
@@ -30,5 +30,8 @@ public class Maquina {
         return nombre;
     }
 
-	
+    @Override
+    public int compareTo(Maquina o) {
+        return Integer.compare(o.piezas, this.piezas);
+    }
 }
