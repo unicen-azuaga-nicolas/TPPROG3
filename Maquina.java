@@ -1,8 +1,8 @@
 package prog3.Trabajo.Especial;
 
 public class Maquina implements Comparable<Maquina> {
-	String nombre;
-    int piezas;
+	private String nombre;
+    private int piezas;
 
     public Maquina(String nombre, int piezas) {
         this.nombre = nombre;
