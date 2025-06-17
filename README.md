@@ -24,8 +24,6 @@ El problema se aborda mediante dos enfoques de resolución:
 - 🔁 **Backtracking**
 - ⚡ **Greedy**
 
-Ambos métodos han sido implementados y **comparados en cuanto a la calidad de la solución** y el **costo computacional** de cada estrategia.
-
 ---
 
 ## 🔎 Resolución mediante Backtracking
@@ -73,16 +71,36 @@ Se exploran recursivamente **todas las combinaciones posibles** de máquinas cuy
 - El algoritmo **no explora todas las combinaciones posibles**, por lo tanto **no garantiza una solución óptima**.
 - El algoritmo **puede fallar en encontrar una solución**, incluso cuando existe una, si esta depende de combinaciones que el enfoque voraz no contempla por tomar decisiones basadas solo en el mejor candidato inmediato.
 
-
-
 ---
 
-## 📊 Comparación de Estrategias
+## ▶️ Ejecución del Programa
 
-| Estrategia   | ¿Garantiza solución óptima? | Costosa en tiempo | 
-|--------------|----------------------------|-----------------|
-| Backtracking | Sí                        | Sí             | 
-| Greedy       |  No                      |  No           | 
+### 📄 Archivo de entrada: `maquinas.txt`
+
+El archivo debe contener la configuración del problema, especificando:
+
+1. **Primera línea**: la cantidad total de piezas a producir (un número entero positivo).
+2. **Líneas siguientes**: una lista de máquinas disponibles, cada una en una línea con el formato:
+
+#### ✅ Ejemplo de archivo válido:
+
+```txt
+7
+M1,3
+M2,2
+M3,1
+```
+---
+
+### 🏁 Cómo ejecutar
+
+1. Asegurarse de tener el archivo `maquinas.txt` en la raíz del proyecto o en la ubicación esperada por el `LectorArchivo`.
+2. Ejecutá el `Main.java`. El programa leerá el archivo y ejecutará ambos algoritmos (`Backtracking` y `Greedy`).
+3. En consola vas a ver la solución encontrada por cada estrategia, incluyendo:
+    - La secuencia de máquinas utilizadas.
+    - Las piezas producidas.
+    - La cantidad de puestas en funcionamiento.
+    - El costo computacional (estados generados o candidatos evaluados).
 
 ---
 
@@ -92,11 +110,13 @@ Se exploran recursivamente **todas las combinaciones posibles** de máquinas cuy
 ├── Algoritmo.java  
 ├── Backtracking.java  
 ├── Greedy.java  
-├── LectorArchivo.java  
-├── Maquina.java  
-├── Main.java  
+├── LectorArchivo.java
+├── Main.java   
+├── Maquina.java   
 ├── Problema.java  
 ├── Solucion.java  
 ├── SolucionSinResultado.java  
-└── maquinas.txt
+├── ValidadorProblema.java  
+└── maquinas.txt <-- input
+```
 
