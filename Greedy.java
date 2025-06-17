@@ -29,6 +29,11 @@ public class Greedy implements Algoritmo  {
     public  Solucion ejecutar(Problema p) {
         Solucion solucion = new Solucion(Solucion.MetodoResolucion.GREEDY);
 
+        // Validación temprana
+        if (!ValidadorProblema.esProblemaValido(p)) {
+            return new SolucionSinResultado(Solucion.MetodoResolucion.GREEDY);
+        }
+
         int piezasRestantes = p.getPiezasTotales();
         List<Maquina> maquinasDeMayorAMenor = new ArrayList<>(p.getMaquinas());
         Collections.sort(maquinasDeMayorAMenor);
@@ -53,7 +58,7 @@ public class Greedy implements Algoritmo  {
     private static Maquina buscarCandidato(List<Maquina> maquinasDeMayorAMenor, int piezasRestantes, Solucion solucion) {
         for (Maquina m : maquinasDeMayorAMenor) {
             solucion.incrementarCosto();
-            if (m.getPiezas() <= piezasRestantes) {
+            if (m.getPiezas() > 0 && m.getPiezas() <= piezasRestantes) {
                 return m;
             }
         }

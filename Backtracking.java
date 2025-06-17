@@ -1,32 +1,51 @@
 package prog3.Trabajo.Especial;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
  * Estrategia Backtracking:
- * - Se genera el árbol de exploracion probando todas las posibles combinaciones de máquinas.
- * - En cada nivel del árbol se prueba con cada máquina disponible, restando su producción al total restante.
- * - Un estado solución es aquel que logra que piezasRestantes == 0.
- * - Se guarda la mejor solución con menor cantidad de puestas en funcionamiento .
- * - Se implementa poda: si piezasRestantes < 0, no se continúa con esa rama.
+ * - El árbol de exploración se genera recursivamente, considerando en cada nivel todas las máquinas disponibles, ya que pueden reutilizarse.
+ * - Cada nodo representa un estado parcial de la solución: piezas restantes por producir y máquinas utilizadas hasta el momento.
+ * - Estados finales: aquellos en los que la suma total de piezas producidas alcanza exactamente el objetivo (piezasRestantes == 0).
+ * - Estados solución: entre los estados finales, el que utiliza la menor cantidad de puestas en funcionamiento (mínima profundidad).
+ *
+ * Podas aplicadas:
+ * - ✂️ Poda por sobreproducción: si piezasRestantes < 0, se descarta la rama actual.
+ * - ✂️ Poda por no mejora: si la cantidad de máquinas utilizadas ya supera a la de la mejor solución conocida, no se continúa.
+ * - ✂️ Poda por inutilidad: se descartan máquinas con producción igual a 0, ya que no aportan al objetivo y generan ramas infinitas.
  */
 public class Backtracking implements Algoritmo {
 
     private Solucion mejorSolucion;
     private int estadosGenerados;
 
+    private int piezasTotales;
+
+    private List<Maquina> maquinas;
+
     public Backtracking() {
         this.mejorSolucion = null;
         this.estadosGenerados = 0;
+        this.piezasTotales = 0;
+        this.maquinas = new ArrayList<>();
     }
 
     @Override
     public Solucion ejecutar(Problema p) {
         Solucion actual = new Solucion(Solucion.MetodoResolucion.BACKTRACKING);
+
+        // Validación temprana
+        if (!ValidadorProblema.esProblemaValido(p)){
+            return new SolucionSinResultado(Solucion.MetodoResolucion.BACKTRACKING);
+        }
+
         mejorSolucion = null;
         estadosGenerados = 0;
+        piezasTotales = p.getPiezasTotales();
+        maquinas = p.getMaquinas();
 
-        ejecutarRecursivo(p.getPiezasTotales(), actual, p.getMaquinas());
+        ejecutarRecursivo(piezasTotales, actual, maquinas);
 
         if (mejorSolucion != null) {
             mejorSolucion.setCosto(estadosGenerados); // <— copiamos el total de estados generados
@@ -55,9 +74,11 @@ public class Backtracking implements Algoritmo {
         if (mejorSolucion != null && actual.getPuestasEnFuncionamiento() >= mejorSolucion.getPuestasEnFuncionamiento()) return;
 
         for (Maquina m : maquinas) {
-            actual.agregarMaquina(m);
-            ejecutarRecursivo(piezasRestantes - m.getPiezas(), actual, maquinas);
-            actual.quitarUltima();
+            if (m.getPiezas() != 0) {
+                actual.agregarMaquina(m);
+                ejecutarRecursivo(piezasRestantes - m.getPiezas(), actual, maquinas);
+                actual.quitarUltima();
+            }
         }
     }
 }

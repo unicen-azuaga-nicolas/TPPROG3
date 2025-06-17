@@ -1,5 +1,15 @@
-# Trabajo Especial - Resolución de Producción Óptima de Piezas
+# Trabajo Práctico Especial - Resolución de Producción Óptima de Piezas
 
+---
+
+## 👥 Grupo 91
+
+### Integrantes
+
+- Azuaga Nicolás
+- Loustau Carlota Agustina
+
+---
 ## 🎯 Objetivo
 
 Determinar una **secuencia óptima de utilización de máquinas** en una fábrica de autopartes, bajo ciertas restricciones de funcionamiento, para producir una **cantidad determinada de piezas**.
@@ -37,6 +47,7 @@ Se exploran recursivamente **todas las combinaciones posibles** de máquinas cuy
 
 - Se aplica **poda por sobreproducción**: se descartan caminos que superan la cantidad de piezas objetivo.
 - Se aplica **poda por no mejora**: se descartan las ramas en las que la cantidad de máquinas utilizadas ya es mayor o igual a la de la mejor solución encontrada hasta el momento.
+- Se aplica **poda por inutilidad**: se descartan máquinas con producción igual a 0, ya que no aportan al objetivo.
 
 ### ✅ Solución obtenida (ejemplo)
 
@@ -61,17 +72,17 @@ Se exploran recursivamente **todas las combinaciones posibles** de máquinas cuy
 
 - El algoritmo **no explora todas las combinaciones posibles**, por lo tanto **no garantiza una solución óptima**.
 - El algoritmo **puede fallar en encontrar una solución**, incluso cuando existe una, si esta depende de combinaciones que el enfoque voraz no contempla por tomar decisiones basadas solo en el mejor candidato inmediato.
-- Las decisiones se basan únicamente en la situación actual (**decisión local**), sin considerar cómo afectarán al resultado final (**visión global limitada**).
-- El algoritmo es rápido y eficiente, pero puede ser **miope** en escenarios complejos.
+
+
 
 ---
 
 ## 📊 Comparación de Estrategias
 
 | Estrategia   | ¿Garantiza solución óptima? | Costosa en tiempo | 
-|--------------|------------------------------|-------------------|
-| Backtracking | ✅ Sí                        | ❌ Sí             | 
-| Greedy       | ❌ No                        | ✅ No             | 
+|--------------|----------------------------|-----------------|
+| Backtracking | Sí                        | Sí             | 
+| Greedy       |  No                      |  No           | 
 
 ---
 
